@@ -1,0 +1,68 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+
+
+public class Solution {
+
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+
+        int n = scanner.nextInt();
+
+        ArrayList<Integer> scores = new ArrayList<>();
+
+        int previousScore = scanner.nextInt();
+        scores.add(previousScore);
+
+       
+        
+        for (int i = 1; i < n; i++) {
+            int currentScore = scanner.nextInt();
+            if (currentScore != previousScore) {
+                scores.add(currentScore);
+            }
+            previousScore = currentScore;
+        }
+
+        int m = scanner.nextInt();
+
+        int currentIndex = scores.size() - 1;
+
+        
+        
+        for (int i = 0; i < m; i++) {
+            int currentAliceScore = scanner.nextInt();
+            boolean searchingPosition = true;
+            while (searchingPosition) {
+                if (currentIndex < 0) {
+                    System.out.println(1);
+                    searchingPosition = false;
+                } else {
+                    int currentScore = scores.get(currentIndex);
+                    if (currentScore == currentAliceScore) {
+                        System.out.println(currentIndex + 1);
+                        searchingPosition = false;
+
+                    } else if (currentScore > currentAliceScore) {
+                        System.out.println(currentIndex + 2);
+                        searchingPosition = false;
+
+                    }
+                    
+                    else {
+                        currentIndex--;
+                    }
+                }
+
+            }
+
+        }
+
+        scanner.close();
+    }
+}
